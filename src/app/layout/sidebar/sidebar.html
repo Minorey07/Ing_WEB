@@ -1,0 +1,38 @@
+<ul class="sidebar">
+
+  <li>
+    <a routerLink="/dashboard">Dashboard</a>
+  </li>
+
+  <!-- ADMIN -->
+  <li *ngIf="usuario?.rol === 'ADMIN'">
+    <a routerLink="/usuarios">Usuarios</a>
+  </li>
+
+  <!-- INVENTARIO (ADMIN + ALMACENERO) -->
+  <li *ngIf="['ADMIN','ALMACENERO'].includes(usuario?.rol)">
+    <a routerLink="/productos">Productos</a>
+  </li>
+
+  <li *ngIf="['ADMIN','ALMACENERO'].includes(usuario?.rol)">
+    <a routerLink="/proveedores">Proveedores</a>
+  </li>
+
+  <li *ngIf="['ADMIN','ALMACENERO'].includes(usuario?.rol)">
+    <a routerLink="/compras">Compras</a>
+  </li>
+
+  <!-- VENTAS (ADMIN + VENDEDOR) -->
+  <li *ngIf="['ADMIN','VENDEDOR'].includes(usuario?.rol)">
+    <a routerLink="/clientes">Clientes</a>
+  </li>
+
+  <li *ngIf="['ADMIN','VENDEDOR'].includes(usuario?.rol)">
+    <a routerLink="/pedidos">Pedidos</a>
+  </li>
+
+  <li *ngIf="['ADMIN','VENDEDOR'].includes(usuario?.rol)">
+    <a routerLink="/ventas">Ventas</a>
+  </li>
+
+</ul>

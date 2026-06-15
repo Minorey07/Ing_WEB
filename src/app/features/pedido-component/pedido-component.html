@@ -1,0 +1,202 @@
+<div class="container-fluid py-4">
+
+  <h2 class="mb-4">Gestión de Pedidos</h2>
+
+  <form (submit)="guardar($event)">
+
+    <div class="row">
+
+      <!-- FORM -->
+      <div class="col-md-4">
+
+        <div class="card shadow-sm p-3 mb-3">
+
+          <h5>Datos del Pedido</h5>
+
+          <label class="form-label">Cliente</label>
+          <select
+            class="form-select mb-3"
+            [value]="modeloPedido().clienteId"
+            (change)="actualizarCliente($event)">
+
+            <option value="">Seleccione cliente</option>
+
+            @for(cliente of listaClientes; track cliente.id){
+              <option [value]="cliente.id">
+                {{ cliente.id }} - {{ cliente.nombres }}
+              </option>
+            }
+
+          </select>
+
+          <label class="form-label">Estado</label>
+          <select
+            class="form-select mb-3"
+            [value]="modeloPedido().estado"
+            (change)="actualizarEstado($event)">
+
+            <option value="PENDIENTE">PENDIENTE</option>
+            <option value="ENTREGADO">ENTREGADO</option>
+
+          </select>
+
+          <button class="btn btn-primary w-100" type="submit">
+            {{ modoEdicion ? 'Actualizar Pedido' : 'Guardar Pedido' }}
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCTOS -->
+      <div class="col-md-4">
+
+        <div class="card shadow-sm p-3 mb-3">
+
+          <h5>Productos</h5>
+
+          @for(producto of listaProductos; track producto.id){
+            <div class="border rounded p-2 mb-2">
+
+              <strong>{{ producto.nombre }}</strong><br>
+              S/. {{ producto.precio }} | Stock: {{ producto.stock }}
+
+              <div class="mt-2 d-flex gap-2">
+
+                <button type="button"
+                        class="btn btn-success btn-sm"
+                        (click)="agregarProducto(producto)">
+                  +
+                </button>
+
+                <button type="button"
+                        class="btn btn-danger btn-sm"
+                        (click)="disminuir(producto)">
+                  -
+                </button>
+
+              </div>
+
+            </div>
+          }
+
+        </div>
+
+      </div>
+
+      <!-- CARRITO -->
+      <div class="col-md-4">
+
+        <div class="card shadow-sm p-3 mb-3">
+
+          <h5>Carrito</h5>
+
+          @for(item of carrito; track item.productoId){
+            <div class="border-bottom py-2">
+
+              <strong>{{ item.nombre }}</strong><br>
+              Cant: {{ item.cantidad }}<br>
+              Precio: S/. {{ item.precio }}<br>
+              Subtotal: <strong>S/. {{ item.subtotal }}</strong>
+
+            </div>
+          }
+
+          <hr>
+
+          <h4>Total: S/. {{ totalCalculado }}</h4>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </form>
+
+  <!-- RESUMEN -->
+  <div class="row text-center my-4">
+
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3">
+        <h6>Total Pedidos</h6>
+        <h3>{{ listaPedidos.length }}</h3>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3">
+        <h6>Pendientes</h6>
+        <h3 class="text-warning">{{ pedidosPendientes }}</h3>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3">
+        <h6>Entregados</h6>
+        <h3 class="text-success">{{ pedidosEntregados }}</h3>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow-sm p-3">
+        <h6>Ventas</h6>
+        <h3 class="text-primary">S/. {{ totalVentas }}</h3>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TABLA -->
+  <div class="card shadow-sm p-3">
+
+    <h5>Lista de Pedidos</h5>
+
+    <div class="table-responsive">
+
+      <table class="table table-hover">
+
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Vendedor</th>
+            <th>Productos</th>
+            <th>Total</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          @for(pedido of listaPedidos; track pedido.id){
+            <tr>
+              <td>{{ pedido.id }}</td>
+              <td>{{ getNombreCliente(pedido.clienteId) }}</td>
+              <td>{{ getNombreVendedor() }}</td>
+
+              <td>
+                @for(d of pedido.detalles; track d.productoId){
+                  <div>{{ d.nombre }} x{{ d.cantidad }}</div>
+                }
+              </td>
+
+              <td>S/. {{ pedido.total }}</td>
+              <td>
+                <span class="badge bg-info">
+                  {{ pedido.estado }}
+                </span>
+              </td>
+
+            </tr>
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

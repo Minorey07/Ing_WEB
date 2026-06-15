@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+
+<div class="d-flex">
+
+  <!-- SIDEBAR -->
+  <app-sidebar></app-sidebar>
+
+  <!-- CONTENIDO -->
+  <div class="container-fluid p-4 bg-light min-vh-100">
+
+    <h1 class="mb-4">Dashboard Melius S.A.C.</h1>
+
+    <!-- CARDS -->
+    <div class="row g-3 mb-4">
+
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 text-center p-3">
+          <h5 class="text-muted">Pedidos Pendientes</h5>
+          <h2 class="text-warning">{{ pedidosPendientes }}</h2>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 text-center p-3">
+          <h5 class="text-muted">Pedidos Entregados</h5>
+          <h2 class="text-success">{{ pedidosEntregados }}</h2>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 text-center p-3">
+          <h5 class="text-muted">Ventas Totales</h5>
+          <h2 class="text-primary">S/. {{ totalVentas }}</h2>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- GRÁFICO PEDIDOS -->
+    <div class="card shadow-sm border-0 p-3 mb-4">
+      <h5 class="mb-3">Gráfico de Pedidos</h5>
+      <canvas id="chartPedidos"></canvas>
+    </div>
+
+    <!-- GRÁFICO STOCK -->
+    <div class="card shadow-sm border-0 p-3 mb-4">
+      <h5 class="mb-3">Stock de Productos</h5>
+      <canvas id="chartStock"></canvas>
+    </div>
+
+    <!-- GRÁFICO VENTAS -->
+    <div class="card shadow-sm border-0 p-3">
+      <h5 class="mb-3">Ventas por Pedido</h5>
+      <canvas id="chartVentas"></canvas>
+    </div>
+
+  </div>
+
+</div>
