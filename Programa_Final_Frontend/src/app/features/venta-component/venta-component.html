@@ -1,0 +1,102 @@
+<div class="container-fluid py-4">
+
+  <h2 class="mb-4">Reporte de Ventas</h2>
+
+  <!-- RESUMEN -->
+  <div class="row text-center mb-4">
+
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h6>Total Ventas</h6>
+        <h3>{{ listaVentas().length }}</h3>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3">
+        <h6>Monto Vendido</h6>
+        <h3>S/. {{ totalVentas }}</h3>
+      </div>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <!-- TABLA -->
+  <div class="card shadow-sm p-3">
+
+    <h5 class="mb-3">Detalle de Ventas</h5>
+
+    <div class="table-responsive">
+
+      <table class="table table-hover align-middle">
+
+        <thead class="table-dark">
+          <tr>
+            <th style="width: 40px"></th>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Vendedor</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          @for(venta of listaVentas(); track venta.id){
+
+            <tr>
+              <td>
+                <button class="btn btn-sm btn-outline-secondary" (click)="toggleExpand(venta.id)">
+                  {{ expandido().has(venta.id) ? '&minus;' : '+' }}
+                </button>
+              </td>
+              <td>{{ venta.id }}</td>
+              <td><strong>{{ venta.clienteNombre || 'Cliente #' + venta.clienteId }}</strong></td>
+              <td>{{ venta.vendedorNombre || 'Vendedor #' + venta.vendedorId }}</td>
+              <td>
+                <span class="badge bg-success">
+                  S/. {{ venta.total }}
+                </span>
+              </td>
+            </tr>
+
+            @if(expandido().has(venta.id)){
+              <tr>
+                <td colspan="5" class="p-0">
+                  <table class="table table-sm table-striped mb-0">
+                    <thead>
+                      <tr class="table-secondary">
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Subtotal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for(d of venta.detalles; track d.productoId){
+                        <tr>
+                          <td>{{ d.productoNombre || d.nombre || 'Producto #' + d.productoId }}</td>
+                          <td>{{ d.cantidad }}</td>
+                          <td>S/. {{ d.precio }}</td>
+                          <td>S/. {{ d.subtotal }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            }
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
