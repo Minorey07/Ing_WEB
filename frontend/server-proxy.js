@@ -26,12 +26,8 @@ app.use(
 );
 
 // Servir archivos estáticos del frontend compilado
-const distPath = path.join(__dirname, 'dist/frontend/browser');
+const distPath = path.join(__dirname, 'dist/Programa_Final_Frontend/browser');
 app.use(express.static(distPath));
-
-// Para SSR (Server-Side Rendering)
-// Importar el servidor de Angular compilado
-const { renderApplication, renderPage } = require('@angular/platform-server');
 
 // Health check
 app.get('/health', (req, res) => {
