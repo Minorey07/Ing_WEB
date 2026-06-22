@@ -3,17 +3,15 @@ services:
     name: melius
     runtime: python
     region: oregon
-    buildCommand: pip install -r melius-backend/requirements.txt && cd Programa_Final_Frontend && npm install && npm run build
-    startCommand: bash ./start-unified.sh
+    buildCommand: bash build-render.sh
+    startCommand: bash start-unified.sh
     
     envVars:
-      - key: DATABASE_URL
-        sync: false
-      - key: JWT_SECRET
-        sync: false
       - key: SUPABASE_URL
         sync: false
       - key: SUPABASE_KEY
+        sync: false
+      - key: JWT_SECRET
         sync: false
       - key: ENVIRONMENT
         value: production
