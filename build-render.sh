@@ -2,12 +2,12 @@
 set -e
 
 echo "🔨 Build Stage 1: Installing backend dependencies..."
-cd melius-backend
+cd backend
 pip install -r requirements.txt
 cd ..
 
 echo "🔨 Build Stage 2: Building frontend..."
-cd Programa_Final_Frontend
+cd frontend
 npm install
 npm run build
 cd ..

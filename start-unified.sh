@@ -2,7 +2,7 @@
 
 # Iniciar el backend FastAPI en puerto 8000 (background)
 echo "🚀 Starting backend..."
-cd melius-backend
+cd backend
 uvicorn main:app --host 0.0.0.0 --port 8000 &
 BACKEND_PID=$!
 cd ..
@@ -12,5 +12,5 @@ sleep 2
 
 # Iniciar el servidor proxy/frontend en el puerto principal
 echo "🚀 Starting unified frontend+proxy server..."
-cd Programa_Final_Frontend
+cd frontend
 node server-proxy.js

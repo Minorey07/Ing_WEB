@@ -26,7 +26,7 @@ app.use(
 );
 
 // Servir archivos estáticos del frontend compilado
-const distPath = path.join(__dirname, 'dist/Programa_Final_Frontend/browser');
+const distPath = path.join(__dirname, 'dist/frontend/browser');
 app.use(express.static(distPath));
 
 // Para SSR (Server-Side Rendering)
