@@ -1,0 +1,45 @@
+<ul class="sidebar">
+
+  <li>
+    <a routerLink="/dashboard">Dashboard</a>
+  </li>
+
+  <!-- Solo ADMIN -->
+  <li *ngIf="usuario?.rol === 'ADMIN'">
+    <a routerLink="/usuarios">Usuarios</a>
+  </li>
+
+  <li *ngIf="usuario?.rol === 'ADMIN'">
+    <a routerLink="/compras">Compras</a>
+  </li>
+
+  <li *ngIf="usuario?.rol === 'ADMIN'">
+    <a routerLink="/ventas">Ventas</a>
+  </li>
+
+  <!-- ADMIN + ALMACENERO -->
+  <li *ngIf="isAdminOrAlmacenero()">
+    <a routerLink="/proveedores">Proveedores</a>
+  </li>
+
+  <!-- ADMIN + VENDEDOR -->
+  <li *ngIf="isAdminOrVendedor()">
+    <a routerLink="/clientes">Clientes</a>
+  </li>
+
+  <!-- Todos los roles internos -->
+  <li *ngIf="isInternalUser()">
+    <a routerLink="/productos">Productos</a>
+  </li>
+
+  <li *ngIf="isInternalUser()">
+    <a routerLink="/pedidos">Pedidos</a>
+  </li>
+
+  <li class="divider"></li>
+
+  <li *ngIf="usuario">
+    <a routerLink="/login" (click)="cerrarSesion()">Cerrar Sesión</a>
+  </li>
+
+</ul>

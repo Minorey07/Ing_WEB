@@ -1,0 +1,114 @@
+<div class="container py-4">
+
+  <h2 class="mb-4 text-center">Gestión de Clientes</h2>
+
+  <!-- FORMULARIO -->
+  <div class="card shadow-sm p-4 mb-4">
+
+    <form (submit)="guardar($event)">
+
+      <div class="mb-3">
+        <label class="form-label">Nombres</label>
+        <input
+          class="form-control"
+          [formField]="formularioCliente.nombres"
+          placeholder="Ingrese nombres">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Teléfono</label>
+        <input
+          class="form-control"
+          [formField]="formularioCliente.telefono"
+          placeholder="Ingrese teléfono">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Dirección</label>
+        <input
+          class="form-control"
+          [formField]="formularioCliente.direccion"
+          placeholder="Ingrese dirección">
+      </div>
+
+      <button class="btn btn-primary w-100" type="submit">
+
+        @if(modoEdicion){
+          Actualizar Cliente
+        } @else {
+          Guardar Cliente
+        }
+
+      </button>
+
+    </form>
+
+  </div>
+
+  <!-- RESUMEN -->
+  <div class="alert alert-info text-center">
+    Clientes Registrados: <strong>{{ totalClientes }}</strong>
+  </div>
+
+  <!-- TABLA -->
+  <div class="card shadow-sm p-3">
+
+    <h4 class="mb-3">Lista de Clientes</h4>
+
+    <div class="table-responsive">
+
+      <table class="table table-hover align-middle">
+
+        <thead class="table-dark">
+
+          <tr>
+            <th>ID</th>
+            <th>Nombres</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          @for(cliente of listaClientes(); track cliente.id){
+
+            <tr>
+              <td>{{ cliente.id }}</td>
+              <td>{{ cliente.nombres }}</td>
+              <td>{{ cliente.telefono }}</td>
+              <td>{{ cliente.direccion }}</td>
+
+              <td class="d-flex gap-2">
+
+                <button
+                  type="button"
+                  class="btn btn-warning btn-sm"
+                  (click)="editar(cliente)">
+                  Editar
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm"
+                  (click)="eliminar(cliente.id)">
+                  Eliminar
+                </button>
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
