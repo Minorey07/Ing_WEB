@@ -73,12 +73,13 @@ git push origin version-despliegue
 
 ### 3️⃣ Variables de Entorno Necesarias
 
-| Variable | Valor | Ejemplo |
-|----------|-------|---------|
-| `DATABASE_URL` | URL de conexión Supabase | `postgresql://user:pass@...` |
-| `JWT_SECRET` | Clave secreta JWT (32+ chars) | Genera con `openssl rand -hex 32` |
-| `ENVIRONMENT` | Ambiente de ejecución | `production` |
-| `NODE_ENV` | Entorno de Node | `production` |
+| Variable | Valor | Cómo Obtenerlo |
+|----------|-------|---|
+| `SUPABASE_URL` | `https://thvijujtbucrqtvvlvue.supabase.co` | ✅ Ya la tienes |
+| `SUPABASE_KEY` | Tu anon public key de Supabase | Ve a Supabase → Project Settings → API → Anon Public |
+| `JWT_SECRET` | `melius-sac-secret-key-2024` | ✅ Ya la tienes |
+| `ENVIRONMENT` | `production` | Por defecto configurado |
+| `NODE_ENV` | `production` | Por defecto configurado |
 
 ### 4️⃣ Cómo Funciona el Despliegue Unificado
 
