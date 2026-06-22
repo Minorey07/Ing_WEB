@@ -1,0 +1,128 @@
+<div class="container-fluid py-4">
+
+  <h2 class="mb-4">Gestión de Usuarios</h2>
+
+  <div class="row">
+
+    <!-- FORMULARIO -->
+    <div class="col-md-4">
+
+      <div class="card shadow-sm p-3 mb-3">
+
+        <h5>Registrar Usuario</h5>
+
+        <form (submit)="guardar($event)">
+
+          <label class="form-label">Nombre</label>
+          <input
+            class="form-control mb-3"
+            [formField]="formularioUsuario.nombre"
+            placeholder="Ingrese nombre">
+
+          <label class="form-label">Correo</label>
+          <input
+            class="form-control mb-3"
+            [formField]="formularioUsuario.correo"
+            placeholder="Ingrese correo">
+
+          <label class="form-label">Contraseña</label>
+          <input
+            type="password"
+            class="form-control mb-3"
+            [formField]="formularioUsuario.password"
+            placeholder="Ingrese contraseña">
+
+          <label class="form-label">Rol</label>
+          <select
+            class="form-select mb-3"
+            [value]="rolIdValue"
+            (change)="actualizarRol($event)">
+
+            <option [value]="1">ADMIN</option>
+            <option [value]="2">ALMACENERO</option>
+            <option [value]="3">VENDEDOR</option>
+
+          </select>
+
+          <button class="btn btn-primary w-100" type="submit">
+            {{ modoEdicion ? 'Actualizar Usuario' : 'Guardar Usuario' }}
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+    <!-- LISTA -->
+    <div class="col-md-8">
+
+      <div class="card shadow-sm p-3">
+
+        <h5 class="mb-3">Lista de Usuarios</h5>
+
+        <div class="table-responsive">
+
+          <table class="table table-hover align-middle">
+
+            <thead class="table-dark">
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              @for(usuario of listaUsuarios(); track usuario.id){
+
+                <tr>
+
+                  <td>{{ usuario.id }}</td>
+                  <td><strong>{{ usuario.nombre }}</strong></td>
+                  <td>{{ usuario.correo }}</td>
+
+                  <td>
+                    <span class="badge bg-secondary">
+                      {{ usuario.rolNombre || (usuario.rolId === 1 ? 'ADMIN' : usuario.rolId === 2 ? 'ALMACENERO' : 'VENDEDOR') }}
+                    </span>
+                  </td>
+
+                  <td class="d-flex gap-2">
+
+                    <button
+                      type="button"
+                      class="btn btn-warning btn-sm"
+                      (click)="editar(usuario)">
+                      Editar
+                    </button>
+
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-sm"
+                      (click)="eliminar(usuario.id!)">
+                      Eliminar
+                    </button>
+
+                  </td>
+
+                </tr>
+
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

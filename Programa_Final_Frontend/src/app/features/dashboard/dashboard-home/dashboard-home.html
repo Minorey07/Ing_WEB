@@ -1,0 +1,161 @@
+<app-navbar></app-navbar>
+
+<div class="d-flex">
+
+  <app-sidebar></app-sidebar>
+
+  <div class="container-fluid p-4 bg-light min-vh-100">
+
+    <h1 class="mb-4">Dashboard Melius S.A.C.</h1>
+
+    <!-- ADMIN -->
+    <ng-container *ngIf="rol() === 'ADMIN'">
+
+      <div class="row g-3 mb-4">
+
+        <div class="col-md-4">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <h5 class="text-muted">Total Productos</h5>
+            <h2 class="text-primary">{{ totalProductos() }}</h2>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <h5 class="text-muted">Total Clientes</h5>
+            <h2 class="text-success">{{ totalClientes() }}</h2>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <h5 class="text-muted">Total Proveedores</h5>
+            <h2 class="text-info">{{ totalProveedores() }}</h2>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <h5 class="text-muted">Total Pedidos</h5>
+            <h2 class="text-warning">{{ totalPedidos() }}</h2>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <h5 class="text-muted">Total Ventas</h5>
+            <h2 class="text-primary">S/. {{ totalVentas() }}</h2>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card shadow-sm border-0 p-3 mb-4">
+        <h5 class="mb-3">Gráfico de Pedidos</h5>
+        <canvas id="chartPedidos"></canvas>
+      </div>
+
+      <div class="card shadow-sm border-0 p-3 mb-4">
+        <h5 class="mb-3">Stock de Productos</h5>
+        <canvas id="chartStock"></canvas>
+      </div>
+
+      <div class="card shadow-sm border-0 p-3">
+        <h5 class="mb-3">Ventas por Pedido</h5>
+        <canvas id="chartVentas"></canvas>
+      </div>
+
+    </ng-container>
+
+    <!-- ALMACENERO -->
+    <ng-container *ngIf="rol() === 'ALMACENERO'">
+
+      <div class="row g-3 mb-4">
+
+        <div class="col-md-3">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <h5 class="text-muted">Total Productos</h5>
+            <h2 class="text-primary">{{ totalProductos() }}</h2>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card shadow-sm border-0 text-center p-3 border-danger">
+            <h5 class="text-muted">Stock Bajo</h5>
+            <h2 class="text-danger">{{ stockBajo() }}</h2>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <h5 class="text-muted">Pedidos Pendientes</h5>
+            <h2 class="text-warning">{{ pedidosPendientes() }}</h2>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <h5 class="text-muted">Pedidos Entregados</h5>
+            <h2 class="text-success">{{ pedidosEntregados() }}</h2>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card shadow-sm border-0 p-3 mb-4">
+        <h5 class="mb-3">Gráfico de Pedidos</h5>
+        <canvas id="chartPedidos"></canvas>
+      </div>
+
+      <div class="card shadow-sm border-0 p-3">
+        <h5 class="mb-3">Stock de Productos</h5>
+        <canvas id="chartStock"></canvas>
+      </div>
+
+    </ng-container>
+
+    <!-- VENDEDOR -->
+    <ng-container *ngIf="rol() === 'VENDEDOR'">
+
+      <div class="row g-3 mb-4">
+
+        <div class="col-md-3">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <h5 class="text-muted">Total Clientes</h5>
+            <h2 class="text-success">{{ totalClientes() }}</h2>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <h5 class="text-muted">Pedidos Pendientes</h5>
+            <h2 class="text-warning">{{ pedidosPendientes() }}</h2>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <h5 class="text-muted">Pedidos Entregados</h5>
+            <h2 class="text-success">{{ pedidosEntregados() }}</h2>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card shadow-sm border-0 text-center p-3">
+            <h5 class="text-muted">Total Pedidos Registrados</h5>
+            <h2 class="text-primary">{{ totalPedidos() }}</h2>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card shadow-sm border-0 p-3">
+        <h5 class="mb-3">Gráfico de Pedidos</h5>
+        <canvas id="chartPedidos"></canvas>
+      </div>
+
+    </ng-container>
+
+  </div>
+
+</div>
