@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -17,9 +18,17 @@ from apis import (
 
 app = FastAPI(title="Melius S.A.C API")
 
+# Configurar orígenes CORS dinámicamente
+frontend_url = os.getenv("FRONTEND_URL", "http://localhost:4200")
+allowed_origins = [
+    frontend_url,
+    "http://localhost:4200",
+    "http://localhost:3000",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

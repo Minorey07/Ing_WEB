@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import camelcaseKeys from 'camelcase-keys';
 import snakecaseKeys from 'snakecase-keys';
 
-const API_BASE = 'http://localhost:8000';
+// Usar ruta relativa para que funcione en desarrollo y producción
+const API_BASE = '/api';
 
 type CaseDirection = 'camel' | 'snake';
 
