@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import camelcaseKeys from 'camelcase-keys';
 import snakecaseKeys from 'snakecase-keys';
 
-const API_BASE = 'https://ing-web.onrender.com';
+const API_BASE = 'https://ing-web-2.onrender.com';
 
 type CaseDirection = 'camel' | 'snake';
 
